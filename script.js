@@ -40,7 +40,7 @@ const albumData = {
     'Tiendas Mass': ['img/mass1.jpg', 'img/mass2.jpg'],
     'Tambo': ['img/tambo1.jpg', 'img/tambo2.jpg'],
     'Tottus': ['img/tottus1.jpg', 'img/tottus2.jpg'],
-    'Makro': ['img/makro1.jpg', 'img/Makro2.jpg', 'img/Makro3.jpg'],
+    'Makro': ['img/Makro1.jpg', 'img/Makro2.jpg', 'img/Makro3.jpg'],
     'Promart': ['img/promart1.jpg'],
     'Precio Uno': ['img/uno1.jpg']
 };
