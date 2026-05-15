@@ -1,0 +1,717 @@
+/* --- CONFIGURACIÓN GENERAL --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* --- HEADER Y NAVBAR --- */
+header {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.top-bar {
+    background-color: #2f722e;
+    color: white;
+    padding: 10px 0;
+    font-size: 14px;
+}
+
+.top-bar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.social-icons a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: #8cb341;
+}
+
+.main-nav {
+    background-color: #ffffff;
+    padding: 5px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo img {
+    height: 100px;
+    width: 200px;
+    object-fit: fill;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 30px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.nav-links li a:hover, .nav-links li a.active {
+    color: #2d572c;
+    border-bottom: 2px solid #8cb341;
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop'); 
+    background-size: cover;
+    background-position: center;
+    height: 55vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+/* --- ESTILO UNIFICADO PARA EL BOTÓN DEL BANNER --- */
+.btn-primary {
+    display: inline-block;
+    background: linear-gradient(to right, #35c433, #4b7230); /* Degradado similar al de WhatsApp */
+    color: white;
+    padding: 15px 35px;
+    text-decoration: none;
+    border-radius: 50px; /* Bordes redondeados para que coincida con el otro botón */
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+    
+    /* Animación de suavizado */
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: none;
+    cursor: pointer;
+}
+
+/* --- EFECTO DE FLOTAR AL PASAR EL MOUSE --- */
+.btn-primary:hover {
+    transform: translateY(-5px); /* Aquí es donde flota igual que los demás */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* La sombra aumenta al subir */
+    background: linear-gradient(to right, #2d572c, #5b8c3e); /* Cambio ligero de color */
+    filter: brightness(1.1);
+}
+
+/* Efecto cuando se hace click */
+.btn-primary:active {
+    transform: translateY(-2px);
+}
+
+/* --- SECCIÓN QUIÉNES SOMOS --- */
+.container-flex {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    padding: 80px 20px;
+}
+
+.about-text { flex: 1; }
+.about-image { flex: 1; }
+
+.title-about {
+    color: #1a7219; 
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.description-about {
+    color: #444;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+}
+
+.highlight-text {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #000;
+    margin-bottom: 30px;
+}
+
+/* 1. EL BOTÓN EN ESTADO NORMAL */
+.btn-whatsapp-large {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(to right, #5b8c3e, #7daa28);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease; /* Esta línea es vital para que el movimiento sea suave */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 2. ESPACIO ENTRE LOGO Y TEXTO (Lo que pediste antes) */
+.btn-whatsapp-large i {
+    margin-right: 15px; /* Espacio exacto para que no se vea junto */
+    font-size: 1.4rem;
+}
+
+/* 3. EL EFECTO DE FLOTAR (HOVER) */
+.btn-whatsapp-large:hover {
+    transform: translateY(-5px); /* Aquí es donde el botón "flota" hacia arriba */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* La sombra crece para dar profundidad */
+    filter: brightness(1.1); /* Brilla un poquito al pasar el mouse */
+}
+
+.about-image img {
+    border-radius: 8px;
+    box-shadow: 10px 10px 0px #1e661d; 
+}
+
+/* --- SECCIÓN SERVICIOS (SWIPER) --- */
+.products-section {
+    background: linear-gradient(to right, #2d572c, #8cb341);
+    padding: 80px 0;
+    text-align: center;
+}
+
+.section-title {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    font-weight: 800;
+}
+
+.slider-wrapper {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 50px;
+}
+
+/* --- CONTENEDOR DE LA TARJETA --- */
+/* --- TARJETA PRINCIPAL --- */
+/* --- TARJETA BLANCA (EL MARCO) --- */
+/* --- TARJETA CON MARCO BLANCO AMPLIADO --- */
+.product-card {
+    background: white;
+    border-radius: 15px; /* Bordes más definidos */
+    overflow: hidden;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    
+    display: flex;
+    flex-direction: column;
+
+    /* --- EL AJUSTE QUE BUSCAS --- */
+    /* Aumentamos el primer valor (arriba) para que no se vea pegado */
+    padding: 30px 15px 20px 15px; 
+    /* Arriba: 30px | Lados: 15px | Abajo: 20px */
+}
+
+/* --- CONTENEDOR DE LA IMAGEN (CUADRO VERDE) --- */
+.product-image {
+    width: 100%;
+    height: 280px; /* Reducimos un poco el alto para dar más espacio al blanco */
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px; /* Radio que encaja con la tarjeta */
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Añadimos un pequeño margen para separar la imagen del texto de abajo si lo hay */
+    margin-bottom: 10px;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* --- OVERLAY VERDE (FLOTANTE) --- */
+.product-overlay {
+    position: absolute;
+    /* Se pega exacto a los bordes del contenedor de la imagen */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(63, 112, 62, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    border-radius: 10px; /* Mismo radio para que no se desborde */
+}
+
+.product-overlay p { color: white; text-align: center; font-weight: 500; }
+
+.product-card:hover .product-overlay { opacity: 1; }
+.product-card:hover .product-image img { transform: scale(1.1); }
+.product-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+
+/* FLECHAS FUERA DEL CONTENEDOR */
+.swiper-button-prev, .swiper-button-next {
+    color: white !important;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+.swiper-button-prev { left: 0; }
+.swiper-button-next { right: 0; }
+
+/* --- CONTACTO --- */
+.contact-form { flex: 1; text-align: left; }
+.contact-map { flex: 1; }
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input, .contact-form textarea {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.btn-submit {
+    background-color: #2d572c;
+    color: white;
+    border: none;
+    padding: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* --- RESPONSIVO --- */
+@media (max-width: 768px) {
+    .container-flex { flex-direction: column; text-align: center; }
+    .nav-container { flex-direction: column; }
+    .nav-links { margin-top: 15px; justify-content: center; flex-wrap: wrap; }
+    .nav-links li { margin: 5px 10px; }
+    .hero h1 { font-size: 2rem; }
+    .slider-wrapper { padding: 0 20px; }
+    .swiper-button-prev, .swiper-button-next { display: none !important; }
+}
+
+/* --- LOGOS MÁS GRANDES Y AGRUPADOS --- */
+.clients-swiper {
+    max-width: 1100px; /* Aumentamos el ancho total para que entren logos más grandes */
+    margin: 0 auto;
+    padding: 30px 0;
+}
+
+.client-item img {
+    /* CAMBIO: Subimos el tamaño de 130px a 180px */
+    max-width: 180px; 
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.client-item img:hover {
+    transform: scale(1.1);
+}
+
+/* Título centrado y verde (Asegurando que esté bien) */
+.clients-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    font-weight: bold;
+    color: #2c8321;
+}
+
+.clients-title span {
+    color: hsl(119, 60%, 31%); /* Tu verde corporativo */
+}
+
+.client-item img {
+    max-width: 170px; 
+    width: 150%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    
+    /* EL CAMBIO: Redondea las esquinas */
+    border-radius: 20px; /* Prueba con 15px o 20px */
+    
+    /* Opcional: Una sombra suave para que floten */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    
+    transition: all 0.3s ease;
+}
+
+.client-item img:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.client-item img {
+    width: 150px; 
+    height: 150px; /* Deben tener el mismo ancho y alto */
+    object-fit: cover; /* Para que la imagen llene el círculo */
+    border-radius: 50%; /* Esto los hace circulares */
+    border: 2px solid #eee; /* Un borde fino para definirlos */
+}
+
+.client-item {
+    padding: 15px; /* Esto les da aire entre el logo y el borde */
+}
+
+/* --- ESTILOS DEL MODAL FLOTANTE --- */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* Un poco más oscuro para que resalte */
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 1000px;
+    
+    /* ESTO ES LO QUE LO CENTRA SÍ O SÍ */
+    position: fixed;         /* Se queda fijo en la pantalla */
+    top: 50%;                /* Lo baja al 50% de la altura */
+    left: 50%;               /* Lo mueve al 50% del ancho */
+    transform: translate(-50%, -50%); /* Lo jala exactamente a su centro */
+    
+    box-shadow: 0 5px 50px rgba(0,0,0,0.5);
+    z-index: 10001;          /* Asegura que esté arriba del fondo oscuro */
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    color: #333;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Título dentro del álbum */
+#modalTitle {
+    color: #000000; /* Tu verde principal */
+    text-align: center; /* ESTO centra el texto */
+    width: 100%;       /* Asegura que ocupe todo el ancho para centrarse bien */
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Cuadrícula de fotos del álbum */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.photo-grid img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.photo-grid img:hover {
+    transform: scale(1.03);
+}
+
+/* Estilo para los logos para que parezcan clickeables */
+.client-item img {
+    cursor: pointer;
+}
+
+/* --- ESTILOS DEL VISOR DE FOTO GRANDE --- */
+.lightbox-modal {
+    display: none;
+    position: fixed;
+    z-index: 11000; /* Por encima del primer modal */
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+#lightboxImg {
+    max-width: 80%;
+    max-height: 80vh;
+    border: 3px solid white;
+    border-radius: 5px;
+    margin-top: 5vh;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px; right: 40px;
+    color: white; font-size: 50px;
+    cursor: pointer;
+}
+
+/* Flechas de navegación */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    font-size: 40px;
+    background: rgba(0,0,0,0.5);
+    border: none;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    transition: 0.3s;
+}
+
+.prev { left: 5%; border-radius: 3px 0 0 3px; }
+.next { right: 5%; border-radius: 3px 0 0 3px; }
+
+.prev:hover, .next:hover { background-color: var(--verde-principal); }
+
+#contacto {
+    padding: 80px 0;
+    /* Degradado verde brilloso tipo industrial moderno */
+    background: linear-gradient(to right, #6a7e6a, #7eaa49);
+    color: white;
+}
+
+.container-flex {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    /* Aumenta este valor. Estaba en 40px, súbelo a 80px o 100px */
+    gap: 100px; 
+    padding: 0 20px;
+    align-items: center;
+}
+
+/* --- ESTILO DEL FORMULARIO --- */
+.contact-form {
+    flex: 1;
+    min-width: 300px;
+    background: rgba(255, 255, 255, 0.05); /* Fondo sutilmente transparente */
+    padding: 40px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px); /* Efecto cristal */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+.contact-form h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.contact-form p {
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+.contact-form input, 
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    color: #333;
+    transition: 0.3s;
+}
+
+.contact-form input:focus, 
+.contact-form textarea:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    background: #ffffff;
+}
+
+/* Botón llamativo */
+.btn-submit {
+    width: 100%;
+    padding: 15px;
+    background: #ffd700; /* Dorado para que contraste con el verde */
+    color: #1b301a;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+    background: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* --- ESTILO DEL MAPA --- */
+.contact-map {
+    flex: 1;
+    min-width: 350px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    border: 5px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-map iframe {
+    display: block;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .container-flex {
+        flex-direction: column;
+    }
+    .contact-form {
+        padding: 25px;
+    }
+}
+
+html {
+    scroll-behavior: smooth; /* Esto hace que el salto no sea brusco */
+    /* Ajusta este valor. Si con 100px sigue tapando, súbelo a 120px o 140px */
+    scroll-padding-top: 150px; 
+}
+
+section {
+    scroll-margin-top: 70px;
+}
+
+/* Estilo base de tu header (asegúrate de tener una transición suave) */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    transition: all 0.4s ease; /* Esto hace que el cambio sea fluido */
+    z-index: 1000;
+}
+
+/* Cuando el header se encoge */
+header.pequeno {
+    padding: 0px 0; /* Reduce el espacio arriba y abajo */
+    background-color: rgba(255, 255, 255, 0.95); /* Un poco más de transparencia si quieres */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Si tienes una franja verde superior, podrías ocultarla al hacer scroll */
+header.pequeno .top-bar {
+    display: none;
+}
+
+body {
+    /* Ajusta este valor. Si tu header mide 150px, ponle 150px. 
+       Si ves que aún falta un poco, súbelo a 170px */
+    padding-top: 150px; 
+}
+
+.hero {
+    /* Esto hace que el banner ocupe el 90% de la altura de la pantalla */
+    min-height: 70vh; 
+    
+    /* Asegura que la imagen de los racks se vea completa y centrada */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    /* Mantiene el centrado de las letras */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    /* Espacio superior para que el menú fijo no tape el contenido */
+    padding-top: 120px; 
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Esto lo centra verticalmente */
+    align-items: center;
+    
+    /* MODIFICA ESTO: */
+    padding-top: 170px;    /* Espacio para que el header no lo tape */
+    padding-bottom: 150px;
+}
