@@ -1,18 +1,35 @@
+// ==========================================
+// 1. Configuración de Sliders (Servicios y Clientes)
+// ==========================================
+
+// Swiper de Servicios (Bloques Blancos de Estanterías)
 const swiper = new Swiper(".mySwiper", {
     slidesPerView: 1,
-    spaceBetween: 20,
+    spaceBetween: 25,
+    loop: true,               // Mantiene el carrusel infinito (elimina el espacio vacío al final)
+    loopedSlides: 4,          // Prepara las tarjetas para una transición infinita y fluida
+    watchSlidesProgress: true, // Optimiza que mantengan su renderizado
+    
     navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
     },
+    
+    // Controlamos de forma estricta cuántos bloques se ven para que NUNCA se encojan
     breakpoints: {
-        768: { slidesPerView: 2 },
-        1024: { slidesPerView: 3 } // Esto mantiene el orden de 3 bloques
+        768: { 
+            slidesPerView: 2,
+            spaceBetween: 25 
+        },
+        1024: { 
+            slidesPerView: 3, // Clava exactamente 3 bloques grandes y simétricos en PC
+            spaceBetween: 35  // Espaciado perfecto entre tarjetas
+        } 
     }
 });
 
+// Swiper de Logotipos de Clientes
 var swiperClients = new Swiper(".clients-swiper", {
-    /* En celular se ven 2 grandes */
     slidesPerView: 2, 
     spaceBetween: 20,
     loop: true,
@@ -21,22 +38,22 @@ var swiperClients = new Swiper(".clients-swiper", {
         disableOnInteraction: false,
     },
     breakpoints: {
-        /* En tablets */
         768: { 
             slidesPerView: 3,
             spaceBetween: 25 
         },
-        /* En PC - Con 5 se verán mucho más grandes que con 6 */
         1024: { 
             slidesPerView: 5, 
-            spaceBetween: 30 /* Distancia de dos dedos */
+            spaceBetween: 30 
         },
     },
 });
 
-// Base de datos de imágenes por cliente
+// ==========================================
+// 2. Base de datos de imágenes por cliente
+// ==========================================
 const albumData = {
-    'Plaza Vea': ['img/Makrojpg'],
+    'Plaza Vea': ['img/Makro.jpg'], 
     'Tiendas Mass': ['img/mass1.jpg', 'img/mass2.jpg'],
     'Tambo': ['img/tambo1.jpg', 'img/tambo2.jpg'],
     'Tottus': ['img/tottus1.jpg', 'img/tottus2.jpg'],
@@ -45,43 +62,12 @@ const albumData = {
     'Precio Uno': ['img/uno1.jpg']
 };
 
-function openAlbum(client) {
-    const modal = document.getElementById("albumModal");
-    const container = document.getElementById("photoContainer");
-    const title = document.getElementById("modalTitle");
+let currentAlbum = []; 
+let currentIndex = 0;  
 
-    title.innerText = " Servicios en " + client;
-    container.innerHTML = ""; // Limpiar fotos anteriores
-
-    // Si existen fotos para ese cliente, las agregamos
-    if (albumData[client]) {
-        albumData[client].forEach(src => {
-            const img = document.createElement("img");
-            img.src = src;
-            container.appendChild(img);
-        });
-    }
-
-    modal.style.display = "block";
-    document.body.style.overflow = "hidden"; // Desactiva el scroll de la página de fondo
-}
-
-function closeModal() {
-    document.getElementById("albumModal").style.display = "none";
-    document.body.style.overflow = "auto"; // Reactiva el scroll
-}
-
-// Cerrar si hacen clic fuera del cuadro blanco
-window.onclick = function(event) {
-    if (event.target == document.getElementById("albumModal")) {
-        closeModal();
-    }
-}
-
-let currentAlbum = []; // Guarda las fotos del cliente abierto
-let currentIndex = 0;  // Guarda qué foto estás viendo
-
-// Esta es tu función original mejorada
+// ==========================================
+// 3. Funciones del Álbum (Cuadro Blanco)
+// ==========================================
 function openAlbum(client) {
     const modal = document.getElementById("albumModal");
     const container = document.getElementById("photoContainer");
@@ -90,21 +76,28 @@ function openAlbum(client) {
     title.innerText = "SERVICIOS EN " + client.toUpperCase();
     container.innerHTML = "";
     
-    currentAlbum = albumData[client] || []; // Guardamos el álbum actual
+    currentAlbum = albumData[client] || []; 
 
     currentAlbum.forEach((src, index) => {
         const img = document.createElement("img");
         img.src = src;
-        // Al hacer clic en la foto pequeña, abre el visor grande
+        img.alt = `Trabajo en ${client}`;
         img.onclick = () => openLightbox(index); 
         container.appendChild(img);
     });
 
     modal.style.display = "block";
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = "hidden"; 
 }
 
-// NUEVA: Abre la foto en grande
+function closeModal() {
+    document.getElementById("albumModal").style.display = "none";
+    document.body.style.overflow = "auto"; 
+}
+
+// ==========================================
+// 4. Funciones del Lightbox (Visor Grande)
+// ==========================================
 function openLightbox(index) {
     currentIndex = index;
     const lightbox = document.getElementById("lightbox");
@@ -114,57 +107,85 @@ function openLightbox(index) {
     lightbox.style.display = "flex";
 }
 
-// NUEVA: Cierra el visor grande
 function closeLightbox() {
     document.getElementById("lightbox").style.display = "none";
 }
 
-// NUEVA: Cambia la imagen (atrás/adelante)
 function changeImage(step) {
     currentIndex += step;
-
-    // Si llega al final, vuelve al principio
     if (currentIndex >= currentAlbum.length) currentIndex = 0;
-    // Si va hacia atrás desde la primera, va a la última
     if (currentIndex < 0) currentIndex = currentAlbum.length - 1;
-
     document.getElementById("lightboxImg").src = currentAlbum[currentIndex];
 }
 
-// Cerrar con la tecla Escape
+// ==========================================
+// 5. Controles de Teclado y Clic Externo
+// ==========================================
+window.onclick = function(event) {
+    const modal = document.getElementById("albumModal");
+    const lightbox = document.getElementById("lightbox");
+    if (event.target == modal) closeModal();
+    if (event.target == lightbox) closeLightbox();
+}
+
 document.onkeydown = function(e) {
-    if (e.key === "Escape") closeLightbox();
+    if (e.key === "Escape") {
+        closeLightbox();
+        closeModal();
+    }
     if (document.getElementById("lightbox").style.display === "flex") {
         if (e.key === "ArrowRight") changeImage(1);
         if (e.key === "ArrowLeft") changeImage(-1);
     }
 };
 
+// ==========================================
+// 6. Formulario de Contacto (AJAX - Formspree)
+// ==========================================
 const form = document.querySelector('form');
+if(form) {
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const button = form.querySelector('.btn-submit');
+        const originalText = button.innerText;
+        
+        // Cambiamos el texto del botón temporalmente para dar feedback visual
+        button.innerText = 'Enviando...';
+        button.style.opacity = '0.7';
+        button.disabled = true;
 
-form.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Evita que la página se recargue
-    
-    const formData = new FormData(form);
-    const response = await fetch(form.action, {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'Accept': 'application/json'
+        const formData = new FormData(form);
+        
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                alert('¡Gracias! Tu mensaje ha sido enviado correctamente.');
+                form.reset();
+            } else {
+                alert('Hubo un problema con el servidor. Por favor, vuelve a intentarlo.');
+            }
+        } catch (error) {
+            alert('Error de conexión. Verifica tu internet e inténtalo de nuevo.');
+        } finally {
+            // Restauramos el botón a su estado original pase lo que pase
+            button.innerText = originalText;
+            button.style.opacity = '1';
+            button.disabled = false;
         }
     });
+}
 
-    if (response.ok) {
-        alert('¡Gracias! Tu mensaje ha sido enviado correctamente.');
-        form.reset(); // Limpia el formulario
-    } else {
-        alert('Ups, hubo un problema al enviar tu mensaje.');
-    }
-});
-
+// ==========================================
+// 7. Efecto Scroll Header
+// ==========================================
 window.addEventListener("scroll", function() {
-    const header = document.querySelector("header"); // Verifica que tu etiqueta sea <header>
-    
+    const header = document.querySelector("header");
     if (window.scrollY > 50) {
         header.classList.add("encogido");
     } else {
